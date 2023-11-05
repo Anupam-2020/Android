@@ -1,28 +1,17 @@
 package com.example.listactivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView listView;
-    Spinner spinner;
-    AutoCompleteTextView autoCompleteView;
-    ArrayList<String> arrName = new ArrayList<>(); // for listview
-    ArrayList<String> arrIds = new ArrayList<>(); // for spinner
-    ArrayList<String> arrLanguages = new ArrayList<>(); // for auto-complete
+    ArrayList<String> arrName = new ArrayList<>(); // list of names
 
     Button autoCompleteActivityBtn, spinnerActivityBtn, listActivityBtn;
 
@@ -62,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        // ListView
         arrName.add("Anupam");
         arrName.add("Anurag");
         arrName.add("Rahul");
@@ -83,23 +71,5 @@ public class MainActivity extends AppCompatActivity {
         arrName.add("Gautam");
         arrName.add("Leander");
         arrName.add("Ussain Bolt");
-
-//
-//
-//        // Spinner
-//        arrIds.add("Aadhar Card");
-//        arrIds.add("PAN Card");
-//        arrIds.add("Voter ID Card");
-//        arrIds.add("Driving License Card");
-//        arrIds.add("Ration Card");
-//        arrIds.add("Xth Score Card");
-//        arrIds.add("XII Score Card");
-//
-//        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<>(
-//                this,
-//                android.R.layout.simple_spinner_dropdown_item,
-//                arrIds
-//        );
-//        spinner.setAdapter(adapterSpinner);
     }
 }
