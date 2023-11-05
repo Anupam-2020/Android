@@ -73,4 +73,10 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         Log.d("intent", "destroyed");
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("intent", "resume");
+    }
 }
