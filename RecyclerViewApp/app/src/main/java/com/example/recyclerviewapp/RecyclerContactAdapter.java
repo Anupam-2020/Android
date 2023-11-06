@@ -48,9 +48,14 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<ViewHolder> {
         holder.txtName.setText(arrContact.get(position).name);
         holder.textNumber.setText(arrContact.get(position).number);
 
-        setAnimation(holder.itemView, position);
 
         int pos = holder.getAdapterPosition();
+
+        if(lastPosition < pos) {
+            setAnimation(holder.itemView, pos);
+            lastPosition = pos;
+        }
+
         holder.llProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,11 +127,8 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private void setAnimation(@NonNull View viewToAnimate, int position) {
 //        Log.d("anim", String.valueOf(lastPosition));
-        if(position > lastPosition) {
             Animation animate = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
             viewToAnimate.setAnimation(animate);
-            lastPosition = position;
-        }
     }
 }
 
