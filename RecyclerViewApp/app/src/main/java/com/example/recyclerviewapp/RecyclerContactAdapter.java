@@ -4,9 +4,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,6 +27,7 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     Context context;
     ArrayList<ContactModel> arrContact;
+    int lastPosition = -1;
 
     RecyclerContactAdapter(Context context, ArrayList<ContactModel> arrContact) {
         this.context = context;
@@ -43,6 +47,8 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<ViewHolder> {
         holder.imgContact.setImageResource(arrContact.get(position).img);
         holder.txtName.setText(arrContact.get(position).name);
         holder.textNumber.setText(arrContact.get(position).number);
+
+        setAnimation(holder.itemView, position);
 
         int pos = holder.getAdapterPosition();
         holder.llProfile.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +118,15 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public int getItemCount() {
         return arrContact.size();
+    }
+
+    private void setAnimation(@NonNull View viewToAnimate, int position) {
+//        Log.d("anim", String.valueOf(lastPosition));
+        if(position > lastPosition) {
+            Animation animate = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+            viewToAnimate.setAnimation(animate);
+            lastPosition = position;
+        }
     }
 }
 
