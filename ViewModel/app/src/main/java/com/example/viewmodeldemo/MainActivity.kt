@@ -7,9 +7,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.viewmodeldemo.databinding.ActivityMainBinding
 
+//Note:- Added lifecycle methods to understand the relation of view-model's life-cycle with activity's life-cycle...
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
+    private lateinit var viewModelFactory: MainActivityViewModelFactory // for custom view-model...
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +21,8 @@ class MainActivity : AppCompatActivity() {
         Log.d("TAG", "Created")
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
+        viewModelFactory = MainActivityViewModelFactory(100) // initializing custom view-model with value...
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainActivityViewModel::class.java] // viewModelProvider has an optional argument which is coming from customViewModel class...
 
         binding.sum.text = viewModel.getSum().toString()
         binding.incrementBtn.setOnClickListener {

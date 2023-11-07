@@ -3,8 +3,12 @@ package com.example.viewmodeldemo
 import android.util.Log
 import androidx.lifecycle.ViewModel
 
-class MainActivityViewModel: ViewModel() {
+class MainActivityViewModel(startingTotal: Int): ViewModel() {
     private var sum = 0
+
+    init {
+        sum = startingTotal
+    }
 
     fun getSum(): Int {
         return sum
