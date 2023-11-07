@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn;
+    Button btn, btnImplicitActivity;
     EditText edt1, edt2;
 
     @Override
@@ -25,8 +25,17 @@ public class MainActivity extends AppCompatActivity {
         btn = findViewById(R.id.intent);
         edt1 = findViewById(R.id.name);
         edt2 = findViewById(R.id.qualification);
+        btnImplicitActivity = findViewById(R.id.btnImplicitActivity);
 
-        btn.setText("To to Second Screen");
+        btnImplicitActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ImplicitIntentsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn.setText("Go to Second Screen");
 
 
         btn.setOnClickListener(new View.OnClickListener() {

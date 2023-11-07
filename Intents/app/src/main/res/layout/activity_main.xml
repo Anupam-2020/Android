@@ -40,4 +40,11 @@
         android:hint="Enter Qualification"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/btnImplicitActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Move to Implicit intent"/>
 </LinearLayout>
