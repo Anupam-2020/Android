@@ -1,11 +1,13 @@
 package com.example.viewmodelwithdatabinding
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel: ViewModel() {
-    var count = MutableLiveData<Int>()
+    private var count = MutableLiveData<Int>()
+    val _count: LiveData<Int> = count
 
     init {
         count.value = 10

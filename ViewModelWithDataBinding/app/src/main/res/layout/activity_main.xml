@@ -23,7 +23,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_marginBottom="20dp"
-        android:text="@{String.valueOf(viewModel.count)}" />
+        android:text="@{String.valueOf(viewModel._count)}" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/incrementBtn"

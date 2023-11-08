@@ -21,9 +21,10 @@ class MainActivity : AppCompatActivity() {
         viewModels = ViewModelProvider(this)[MainActivityViewModel::class.java]
 
         binding.viewModel = viewModels // connecting binding-viewModel with ActivityViewModel-class...
+        binding.lifecycleOwner = this // this is for connecting live data with data-binding...
 
-        viewModels.count.observe(this, Observer {
-          binding.countTxt.text = it.toString()
-        })
+//        viewModels._count.observe(this, Observer {
+//          binding.countTxt.text = it.toString()
+//        })
     }
 }
