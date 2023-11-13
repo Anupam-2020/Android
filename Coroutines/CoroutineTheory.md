@@ -38,4 +38,4 @@ runBlocking -> the coroutine created using this builder will block the thread du
 
 ## Suspending Functions..........................................................
 
-various suspending functions -> 1. withContext, 2. withTimeout, 3. withTimeoutOrNull, 4. delay, 5. await, 6. join, 7. CoroutineScope
+various suspending functions -> 1. withContext, 2. withTimeout, 3. withTimeoutOrNull, 4. delay, 5. await, 6. join, 7. coroutineScope

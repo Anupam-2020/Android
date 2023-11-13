@@ -48,11 +48,17 @@ class MainActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 uploadUserData(binding.textView2)
             }
+
+//            CoroutineScope(Dispatchers.Main).launch {
+//                binding.textView.text = UserDataManager().getTotalUserAccount().toString()
+////                binding.textView.text = UserDataManager2().getTotalUserCount().toString()
+//            }
         }
 
         binding.button2.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                downloadUserData(binding.textView)
+//                downloadUserData(binding.textView)
+
             }
         }
 
