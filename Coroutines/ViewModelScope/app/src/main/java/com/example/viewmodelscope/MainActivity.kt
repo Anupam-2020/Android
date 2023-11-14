@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mainActivityViewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
-        mainActivityViewModel.getUserData()
+//        mainActivityViewModel.getUserData()
         mainActivityViewModel.userData.observe(this) { it ->
             it?.forEach {
                 Log.d("Tag", it.name)
