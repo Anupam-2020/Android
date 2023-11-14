@@ -39,19 +39,18 @@ class FirstFragment : Fragment() {
             binding.progress.visibility = View.GONE
             delay(5000)
             binding.progress.visibility = View.VISIBLE
-
-
-            // sometimes we may need to suspend the execution of codeBlock considering the current state of lifecycle object, for that we have three additional builders
-            withCreated {
-                Log.d("Tag", "Created")
-            } // this Coroutine is launched when activity or fragment is created for the first Time.
-            withStarted {
-                Log.d("Tag", "Started")
-            } // this coroutine is launched when activity/fragment is started
-            withResumed {
-                Log.d("Tag", "Resumed")
-            } // this coroutine is launched when activity/fragment has started an used by user.
         }
+
+        // sometimes we may need to suspend the execution of codeBlock considering the current state of lifecycle object, for that we have three additional builders
+//        lifecycleScope.launchWhenCreated { // this Coroutine is launched when activity or fragment is created for the first Time.
+//            Log.d("Tag", "Created")
+//        }
+//        lifecycleScope.launchWhenStarted { // this coroutine is launched when activity/fragment is started
+//            Log.d("Tag", "Started")
+//        }
+//        lifecycleScope.launchWhenResumed { // this coroutine is launched when activity/fragment has started an used by user.
+//            Log.d("Tag", "Resumed")
+//        }
 
         return binding.root
     }
