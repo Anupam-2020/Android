@@ -17,6 +17,7 @@ import com.example.roomdemo.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: SubscribersViewModel
+    private lateinit var adapter: SubscriberRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,14 +42,17 @@ class MainActivity : AppCompatActivity() {
     private fun displayAllSubscribersList() {
         viewModel.subscribers.observe(this) {
 //            Log.d("Tag", it.toString())
-            binding.subscribersRecyclerView.adapter = SubscriberRecyclerViewAdapter(it, this) {
-                    selectedItem: Subscriber -> listItemClicked(selectedItem)
-            }
+            adapter.setList(it)
+            adapter.notifyDataSetChanged()
         }
     }
 
     private fun initRecyclerView() {
         binding.subscribersRecyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = SubscriberRecyclerViewAdapter(this) {
+            listItemClicked(it)
+        }
+        binding.subscribersRecyclerView.adapter = adapter
         displayAllSubscribersList()
     }
 

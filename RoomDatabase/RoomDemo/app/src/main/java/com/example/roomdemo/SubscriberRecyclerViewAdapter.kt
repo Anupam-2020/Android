@@ -9,10 +9,11 @@ import com.example.roomdemo.database.Subscriber
 import com.example.roomdemo.databinding.ListItemBinding
 
 class SubscriberRecyclerViewAdapter(
-    private val subscribersList: List<Subscriber>,
     private val context: Context,
     private val clickListener: (Subscriber) -> Unit
 ): RecyclerView.Adapter<SubscriberViewHolder>() {
+
+    private val subscribersList = ArrayList<Subscriber>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubscriberViewHolder {
         val layoutInflater = LayoutInflater.from(context)
         val binding: ListItemBinding = DataBindingUtil.inflate(layoutInflater, R.layout.list_item, parent, false)
@@ -25,6 +26,11 @@ class SubscriberRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: SubscriberViewHolder, position: Int) {
         holder.bind(subscribersList[position], clickListener)
+    }
+
+    fun setList(subscriber: List<Subscriber>) {
+        subscribersList.clear() // clearing older list
+        subscribersList.addAll(subscriber) // updating new list.
     }
 }
 

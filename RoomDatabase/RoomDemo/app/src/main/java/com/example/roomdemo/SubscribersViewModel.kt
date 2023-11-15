@@ -1,5 +1,6 @@
 package com.example.roomdemo
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -35,16 +36,25 @@ class SubscribersViewModel(private val repository: SubscriberRepository): ViewMo
     }
 
     fun saveOrUpdate() {
-        if(isUpdateOrDelete) {
-            subscriberToUpdateOrDelete.name = inputName.value.toString()
-            subscriberToUpdateOrDelete.email = inputEmail.value.toString()
-            updateSubscriber(subscriberToUpdateOrDelete)
+
+        if(inputName.value == null) {
+            statusMessage.value = Event("Please enter subscriber's name")
+        } else if(inputEmail.value == null) {
+            statusMessage.value = Event("Please enter subscriber's email")
+        } else if(!Patterns.EMAIL_ADDRESS.matcher(inputEmail.value).matches()) {
+            statusMessage.value = Event("Please enter correct email address")
         } else {
-            val name = inputName.value
-            val email = inputEmail.value
-            insertSubscriber(Subscriber(0, name.toString(), email.toString()))
-            inputName.value = ""
-            inputEmail.value = ""
+            if (isUpdateOrDelete) {
+                subscriberToUpdateOrDelete.name = inputName.value.toString()
+                subscriberToUpdateOrDelete.email = inputEmail.value.toString()
+                updateSubscriber(subscriberToUpdateOrDelete)
+            } else {
+                val name = inputName.value
+                val email = inputEmail.value
+                insertSubscriber(Subscriber(0, name.toString(), email.toString()))
+                inputName.value = ""
+                inputEmail.value = ""
+            }
         }
     }
 
