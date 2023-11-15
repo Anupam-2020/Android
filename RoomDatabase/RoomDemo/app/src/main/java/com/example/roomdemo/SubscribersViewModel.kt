@@ -1,5 +1,6 @@
 package com.example.roomdemo
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,6 +23,11 @@ class SubscribersViewModel(private val repository: SubscriberRepository): ViewMo
 
     val saveOrUpdateButtonText = MutableLiveData<String>()
     val clearAllOrDeleteButtonText = MutableLiveData<String>()
+
+    private val statusMessage = MutableLiveData<Event<String>>()
+
+    val message: LiveData<Event<String>>
+        get() = statusMessage
 
     init {
         saveOrUpdateButtonText.value = "SAVE"
@@ -50,39 +56,63 @@ class SubscribersViewModel(private val repository: SubscriberRepository): ViewMo
         }
     }
 
-    fun insertSubscriber(subscriber: Subscriber) = viewModelScope.launch(Dispatchers.IO) {
-            repository.insert(subscriber)
+    private fun insertSubscriber(subscriber: Subscriber) = viewModelScope.launch(Dispatchers.IO) {
+        val newRowId = repository.insert(subscriber)
+        withContext(Dispatchers.Main) {
+            if(newRowId > -1) {
+                statusMessage.value = Event("Subscriber inserted successfully! $newRowId")
+            } else {
+                statusMessage.value = Event("Error Occurred!")
+            }
         }
+    }
 
 
-    fun updateSubscriber(subscriber: Subscriber) {
+    private fun updateSubscriber(subscriber: Subscriber) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.update(subscriber)
+            val updatedRows = repository.update(subscriber)
             withContext(Dispatchers.Main) {
-                inputName.value = ""
-                inputEmail.value = ""
-                isUpdateOrDelete = false
-                saveOrUpdateButtonText.value = "SAVE"
-                clearAllOrDeleteButtonText.value = "CLEAR ALL"
+                if(updatedRows > 0) {
+                    inputName.value = ""
+                    inputEmail.value = ""
+                    isUpdateOrDelete = false
+                    saveOrUpdateButtonText.value = "SAVE"
+                    clearAllOrDeleteButtonText.value = "CLEAR ALL"
+                    statusMessage.value = Event("$updatedRows Subscriber updated successfully")
+                } else {
+                    statusMessage.value = Event("Error Occurred!")
+                }
             }
         }
     }
 
     fun deleteSubscriber(subscriber: Subscriber) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.delete(subscriber)
+            val noOfRowsDeleted = repository.delete(subscriber)
             withContext(Dispatchers.Main){
-                inputName.value = ""
-                inputEmail.value = ""
-                isUpdateOrDelete = false
-                saveOrUpdateButtonText.value = "SAVE"
-                clearAllOrDeleteButtonText.value = "CLEAR ALL"
+                if(noOfRowsDeleted > 0) {
+                    inputName.value = ""
+                    inputEmail.value = ""
+                    isUpdateOrDelete = false
+                    saveOrUpdateButtonText.value = "SAVE"
+                    clearAllOrDeleteButtonText.value = "CLEAR ALL"
+                    statusMessage.value = Event("$noOfRowsDeleted Subscriber deleted successfully")
+                } else {
+                    statusMessage.value = Event("Error Occurred!")
+                }
             }
         }
     }
 
-    fun deleteAll() = viewModelScope.launch(Dispatchers.IO) {
-        repository.deleteAll()
+    private fun deleteAll() = viewModelScope.launch(Dispatchers.IO) {
+        val noOfRowsDeleted = repository.deleteAll()
+        withContext(Dispatchers.Main) {
+            if(noOfRowsDeleted > 0) {
+                statusMessage.value = Event("$noOfRowsDeleted subscribers deleted successfully")
+            } else {
+                statusMessage.value = Event("Error occurred")
+            }
+        }
     }
 
     fun initUpdateAndDeleteSubscribers(subscriber: Subscriber) {
