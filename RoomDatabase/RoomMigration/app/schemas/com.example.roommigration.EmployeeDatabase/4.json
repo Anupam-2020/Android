@@ -1,0 +1,53 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 4,
+    "identityHash": "9f7546549db0378d2bde0c4feabb21a5",
+    "entities": [
+      {
+        "tableName": "employee_info",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`employee_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `employee_name` TEXT NOT NULL, `emp_email` TEXT NOT NULL DEFAULT 'No Email', `employee_age` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "employee_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "employee_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "emp_email",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'No Email'"
+          },
+          {
+            "fieldPath": "age",
+            "columnName": "employee_age",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "employee_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9f7546549db0378d2bde0c4feabb21a5')"
+    ]
+  }
+}

@@ -13,6 +13,9 @@ data class Employee(
     @ColumnInfo(name = "employee_name")
     var name: String,
 
-    @ColumnInfo(name = "employee_email", defaultValue = "No Email")
-    var email: String
+    @ColumnInfo(name = "emp_email", defaultValue = "No Email")
+    var email: String,
+
+    @ColumnInfo(name = "employee_age")
+    var age: String?
 )

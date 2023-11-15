@@ -17,14 +17,16 @@ class MainActivity : AppCompatActivity() {
 
         val nameEdit = findViewById<EditText>(R.id.name_edt)
         val emailEdt = findViewById<EditText>(R.id.email_edt)
+        val ageEdt = findViewById<EditText>(R.id.age_edt)
         val button = findViewById<Button>(R.id.add_btn)
         val deleteBtn = findViewById<Button>(R.id.delete)
         button.setOnClickListener {
             lifecycleScope.launch {
                 nameEdit.text.let {
-                    dao.insertEmployee(Employee(0, it.toString(), emailEdt.text.toString()))
+                    dao.insertEmployee(Employee(0, it.toString(), emailEdt.text.toString(), ageEdt.text.toString()))
                     nameEdit.setText("")
                     emailEdt.setText("")
+                    ageEdt.setText("")
                 }
             }
         }
