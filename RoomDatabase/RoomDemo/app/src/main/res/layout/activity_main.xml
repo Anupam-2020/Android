@@ -40,15 +40,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="20dp"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/saveBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
             android:text="@={myViewModel.saveOrUpdateButtonText}"
             android:onClick="@{() -> myViewModel.saveOrUpdate()}"
+            android:layout_weight="1"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -59,7 +60,7 @@
             android:text="@={myViewModel.clearAllOrDeleteButtonText}"
             android:onClick="@{() -> myViewModel.clearAllOrDelete()}"
             android:textStyle="bold"
-            android:layout_marginLeft="150dp"
+            android:layout_weight="1"
             android:textSize="20sp"/>
 
     </LinearLayout>
