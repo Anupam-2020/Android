@@ -9,7 +9,7 @@ class RemoteRepositoryModule(val memorySize: Int) {
 
     @Provides
     fun provideRemoteRepository(): RemoteRepository {
-        Log.d(TAG,"Size of memory is $memorySize")
+//        Log.d(TAG,"Size of memory is $memorySize")
         return RemoteRepository()
     }
 }

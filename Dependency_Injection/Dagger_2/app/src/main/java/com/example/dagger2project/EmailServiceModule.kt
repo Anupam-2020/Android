@@ -9,7 +9,7 @@ class EmailServiceModule {
 
     @Provides
     fun providesEmailService(): EmailService {
-        Log.d(TAG, "Email sent successfully")
+//        Log.d(TAG, "Email sent successfully")
         return EmailService()
     }
 }

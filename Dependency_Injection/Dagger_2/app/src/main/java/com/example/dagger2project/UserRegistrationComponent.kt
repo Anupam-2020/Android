@@ -1,7 +1,9 @@
 package com.example.dagger2project
 
 import dagger.Component
+import javax.inject.Singleton
 
+@Singleton
 @Component(modules = [
     EmailServiceModule::class,
     UserRepositoryModule::class,

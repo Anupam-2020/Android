@@ -29,11 +29,18 @@ class MainActivity : AppCompatActivity() {
 
         // dagger dependency injection M-2....................................................
 //        DaggerUserRegistrationComponent.create().getDependency(this)
-        DaggerUserRegistrationComponent.builder().remoteRepositoryModule(RemoteRepositoryModule(2000))
-            .build()
-            .getDependency(this)
+//        DaggerUserRegistrationComponent.builder().remoteRepositoryModule(RemoteRepositoryModule(2000))
+//            .build()
+//            .getDependency(this)
 //        userRegistrationService.registerUser("anupam1@gmail.com", "f43644gr")
 
 //        remoteRepository.saveUser("anurag@gmail.com", "124433rg")
+
+
+        // For application class.
+        (application as UserRegistrationApplication).userRegistrationComponent
+            .getDependency(this)
+//        remoteRepository.saveUser("anupamanand@gmail.com", "32424tgvfsv")
+        userRegistrationService.registerUser("anupam@gmail.com", "afewt42")
     }
 }
