@@ -2,7 +2,12 @@ package com.example.dagger2project
 
 import dagger.Component
 
-@Component(modules = [EmailServiceModule::class, UserRepositoryModule::class, RemoteRepositoryModule::class])
+@Component(modules = [
+    EmailServiceModule::class,
+    UserRepositoryModule::class,
+    RemoteRepositoryModule::class,
+    DatabaseRepositoryModule::class
+])
 interface UserRegistrationComponent {
 //    fun getUserRegistrationComponent(): UserRegistrationService
 

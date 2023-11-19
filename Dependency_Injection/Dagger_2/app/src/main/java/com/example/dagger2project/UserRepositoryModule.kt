@@ -9,5 +9,5 @@ import dagger.Provides
 abstract class UserRepositoryModule {
 
     @Binds
-    abstract fun remoteRepository(remoteRepository: RemoteRepository): UserRepository
+    abstract fun databaseRepository(databaseRepository: DatabaseRepository): UserRepository
 }

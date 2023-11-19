@@ -21,18 +21,19 @@ class MainActivity : AppCompatActivity() {
 
 
         // dagger dependency injection M-1....................................................
-//        DaggerUserRegistrationComponent.builder().build()
+//        DaggerUserRegistrationComponent.builder().build() // builder is used when there is state with Module-class involved.
 //             .getUserRegistrationComponent().registerUser("anupam@gmail.com", "f43644gr")
 //
-//        DaggerUserRegistrationComponent.create()
+//        DaggerUserRegistrationComponent.create() // create is used when there is no state with Module-class involved.
 //            .getEmailService().send("anupam@gmail.com", "anupamanand@gmail.com", "Email sent")
 
         // dagger dependency injection M-2....................................................
-        DaggerUserRegistrationComponent.create().getDependency(this)
-        userRegistrationService.registerUser("anupam1@gmail.com", "f43644gr")
+//        DaggerUserRegistrationComponent.create().getDependency(this)
+        DaggerUserRegistrationComponent.builder().remoteRepositoryModule(RemoteRepositoryModule(2000))
+            .build()
+            .getDependency(this)
+//        userRegistrationService.registerUser("anupam1@gmail.com", "f43644gr")
 
-//        remoteRepository.saveUser()
-
-
+//        remoteRepository.saveUser("anurag@gmail.com", "124433rg")
     }
 }
