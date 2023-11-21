@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".presentation.MainActivity">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/movies_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_movies"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:layout_marginBottom="60dp"
+            android:paddingHorizontal="40dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/btn_rounded"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/tvShow_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_tvShow"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:layout_marginBottom="60dp"
+            android:paddingHorizontal="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btn_rounded" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/artist_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_tvShow"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:paddingHorizontal="40dp"
+            android:layout_marginBottom="60dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btn_rounded" />
+
+    </LinearLayout>
+</layout>
